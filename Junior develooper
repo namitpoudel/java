@@ -1,0 +1,87 @@
+
+/**This is the subclass of class developer and named as juniorDeveloper which has
+ * the attribute of salary,appointed date,evaluation peroid,termination date,specification,
+ appointed by and joined*/
+    public class JuniorDeveloper extends Developer{
+
+    int salary;
+    String appointedDate;
+    String evaluationPeriod;
+    String terminationDate;
+    String specialization;
+    String appointedBy;
+    boolean joined;
+//it is a parameterized constructor which has the strings and int variables.
+    public JuniorDeveloper(String platform,String interviewerName,int workingHour,int salary,String appointedBy, String terminationDate){
+        super(platform,interviewerName,workingHour);//super is used to call from developer class
+        this.salary = salary;
+        this.appointedBy = appointedBy;
+        this.terminationDate = terminationDate;
+        appointedDate = "";
+        evaluationPeriod = "";
+        specialization = "";
+        joined = false;
+    }
+//it is getter method for salary 
+    public int getSalary(){
+        return salary;
+    }
+// it is a setter method for salary and non return type
+    public void setSalary(int salary){
+        if(joined == false){
+            this.salary = salary;
+        } else{
+            System.out.println("Developer  has already joined therefore not possible to change salary");
+        }
+    }
+//it is a getter method for appointed date 
+    public String getAppointedDate(){
+        return appointedDate;
+    }
+// it is a getter method for evaluation peroid
+    public String getEvaluationPeriod(){
+        return evaluationPeriod;
+    }
+//it is a getter method for termination date 
+    public String getTerminationDate(){
+        return terminationDate;
+    }
+//it is a getter method for specialization 
+    public String getSpecialization(){
+        return specialization;
+    }
+//it is a getter method for appointed by
+    public String getAppointedBy(){
+        return appointedBy;
+    }
+//it is a getter method for joined 
+    public boolean getJoined(){
+        return joined;
+    }
+//it is the method of appoint developer having parameters in strings.
+    public void appointDev(String developerName,String appointedDate,String terminationDate,String specialization){
+        if(joined == false){
+            super.setDeveloperName(developerName);
+            joined = true;
+            this.appointedDate=appointedDate;
+             this.terminationDate = terminationDate;
+             this.specialization = specialization;
+             System.out.println("The new developer has been appointed");
+        } else{
+            System.out.println("The developer has already been appointed on"+appointedDate);
+        }
+       
+    }
+//it is the method to display the detils of the developer is required.
+    public void display(){
+        super.display();
+        if(joined == true){
+            System.out.println("Appointed Date: "+appointedDate);
+            System.out.println("Evaluation Period: "+evaluationPeriod);
+            System.out.println("Termination Date: "+terminationDate);
+            System.out.println("Developer salary: "+salary);
+            System.out.println("Developer specialization: "+specialization);
+            System.out.println("Developer appointed By: "+appointedBy);
+        }
+    }
+}
