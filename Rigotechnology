@@ -1,0 +1,606 @@
+ 
+/**
+ * Write a description of class RigoTechnology here.
+ *
+ * @author (Namit Poudel)
+ * @version (a version number or a date)
+ */
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.regex.*;
+
+public class RigoTechnology implements ActionListener{
+    // Main Frame
+    private JFrame frame;
+
+    // Content Panel
+    private JPanel panel;
+
+    // Separator
+    private JSeparator sep;
+
+    // Hire Interviewer for SeniorDeveloper
+    private JLabel lblSenior, lblPlateformS, lblInterviewerS, lblContractS, lblWorkingHourS, lblSalaryS; 
+    private JTextField txtFPlateformS, txtFInterviewerS, txtFContractS, txtFWorkingHourS, txtFSalaryS;
+    private JButton btnAddS;
+
+    // Hire SeniorDevelopers
+    private JLabel  lblDeveloperS, lblAdvanceS, lblJoinS,  lblRoomS,lblPlatformNoS;
+    private JTextField txtFDeveloperS, txtFAdvanceS,txtFJoinS,  txtFRoomS, txtFPlatformNoS;
+    private JButton btnAppointS, btnTerminateS;
+
+    // Hire Interviewer for JuniorDeveloper
+    private JLabel lblJunior, lblPlateformJ, lblInterviewerJ, lblWorkingHourJ, lblSalaryJ,lblAppointedByJ, lblTerminateJf; 
+    private JTextField txtFPlateformJ, txtFInterviewerJ,  txtFWorkingHourJ, txtFSalaryJ,txtFAppointedByJ, txtFTerminateJf;
+    private JButton btnAddJ;
+
+    // Hire JuniorDevelopers
+    private  JLabel  lblDeveloperJ,  lblAdvanceJ,  lblAppointJ, lblTerminateJl, lblSpecialJ, lblPlatformNoJ;
+    private JTextField txtFDeveloperJ, txtFAdvanceJ, txtFAppointJ, txtFTerminateJl, txtFSpecialJ,  txtFPlatformNoJ;
+    private JButton btnAppointJ;
+
+    // Buttons to Display and Clear
+    private JButton btnDisplayAll, btnClearAll;
+
+    // ArrayList of Developers Class
+    private ArrayList<Developer> developerList = new ArrayList<Developer>();
+
+    // Main Method
+    public static void main(String []args) {
+        RigoTechnology rigo = new RigoTechnology();
+        rigo.GUI();
+    }
+
+    // GUI method is make to construct GUI
+    public void GUI() {
+        frame = new JFrame("Appointment System");
+
+        panel = new JPanel(); 
+
+        // For SeniorDeveloper
+        lblSenior = new JLabel("Senior Developer");
+        lblSenior.setFont(new Font("Dialog", Font.BOLD, 18));
+        lblSenior.setForeground(Color.BLACK);
+        lblSenior.setBounds(20,20,160,20);
+        panel.add(lblSenior);
+        
+        lblPlateformS = new JLabel("Platform:");
+        lblPlateformS.setBounds(20, 60, 110, 20);
+        panel.add(lblPlateformS);
+
+        txtFPlateformS = new JTextField();
+        txtFPlateformS.setBounds(140, 60, 300, 20);
+        panel.add(txtFPlateformS);
+        
+        lblInterviewerS = new JLabel("Interviwer's Name:");
+        lblInterviewerS.setBounds(20, 90, 110, 20);
+        panel.add(lblInterviewerS);
+
+        txtFInterviewerS = new JTextField();
+        txtFInterviewerS.setBounds(140, 90, 300, 20);
+        panel.add(txtFInterviewerS);
+        
+        lblWorkingHourS = new JLabel("Working Hours:");
+        lblWorkingHourS.setBounds(20, 120, 110, 20);
+        panel.add(lblWorkingHourS);
+
+        txtFWorkingHourS = new JTextField();
+        txtFWorkingHourS.setBounds(140, 120, 80, 20);
+        panel.add(txtFWorkingHourS);
+        
+        lblSalaryS = new JLabel("Salary:");
+        lblSalaryS.setBounds(250, 120, 110, 20);
+        panel.add(lblSalaryS);
+
+        txtFSalaryS = new JTextField();
+        txtFSalaryS.setBounds(360, 120, 80, 20);
+        panel.add(txtFSalaryS);
+        
+        lblContractS = new JLabel("Contract Period:");
+        lblContractS.setBounds(20, 150, 110, 20);
+        panel.add(lblContractS);
+
+        txtFContractS = new JTextField();
+        txtFContractS.setBounds(140, 150, 80, 20);
+        panel.add(txtFContractS);
+
+
+        btnAddS = new JButton("Add");
+        btnAddS.setBounds(360, 160, 80, 20);
+        btnAddS.addActionListener(this);
+        panel.add(btnAddS);
+       
+        
+        lblDeveloperS = new JLabel("Developer's Name:");
+        lblDeveloperS.setBounds(20, 200, 110, 20);
+        panel.add(lblDeveloperS);
+
+        txtFDeveloperS = new JTextField();
+        txtFDeveloperS.setBounds(140, 200, 300, 20);
+        panel.add(txtFDeveloperS);
+
+        lblJoinS = new JLabel("Joining Date:");
+        lblJoinS.setBounds(20, 230, 110, 20);
+        panel.add(lblJoinS);
+
+        txtFJoinS = new JTextField();
+        txtFJoinS.setBounds(140, 230, 80, 20);
+        panel.add(txtFJoinS);
+        
+        lblAdvanceS = new JLabel("Advance Salary:");
+        lblAdvanceS.setBounds(250, 230, 110, 20);
+        panel.add(lblAdvanceS);
+
+        txtFAdvanceS = new JTextField();
+        txtFAdvanceS.setBounds(360, 230, 80, 20);
+        panel.add(txtFAdvanceS);
+
+        lblRoomS = new JLabel("Staff Room Number:");
+        lblRoomS.setBounds(20, 260, 130, 20);
+        panel.add(lblRoomS);
+
+        txtFRoomS = new JTextField();
+        txtFRoomS.setBounds(140, 260, 80, 20);
+        panel.add(txtFRoomS);
+      
+
+        lblPlatformNoS = new JLabel("Platform No:");
+        lblPlatformNoS.setBounds(20, 290, 130, 20);
+        panel.add(lblPlatformNoS);
+
+        txtFPlatformNoS = new JTextField();
+        txtFPlatformNoS.setBounds(140, 290, 80, 20);
+        panel.add(txtFPlatformNoS);
+
+        btnAppointS = new JButton("Appoint");
+        btnAppointS.setBounds(250, 330, 80, 20);
+        btnAppointS.addActionListener(this);
+        panel.add(btnAppointS);
+       
+
+        btnTerminateS = new JButton("Terminate");
+        btnTerminateS.setBounds(340, 330, 100, 20);
+        btnTerminateS.addActionListener(this);
+        panel.add(btnTerminateS);
+       
+
+
+        // Horizontal Separator
+        sep = new JSeparator(SwingConstants.HORIZONTAL);
+        sep.setBounds(0, 370, 470, 20);
+        sep.setBackground(Color.RED);
+        panel.add(sep);
+
+ //     For JuniorDeveloper
+        lblJunior = new JLabel("Junior Developer");
+        lblJunior.setFont(new Font("Dialog", Font.BOLD, 18));
+        lblJunior.setBounds(20,400,160,20);
+        panel.add(lblJunior);
+
+        lblPlateformJ = new JLabel("Platform:");
+        lblPlateformJ.setBounds(20, 450, 110, 20);
+        panel.add(lblPlateformJ);
+
+        txtFPlateformJ = new JTextField();
+        txtFPlateformJ.setBounds(140, 450, 300, 20);
+        panel.add(txtFPlateformJ);
+
+        lblInterviewerJ = new JLabel("Interviwer's Name:");
+        lblInterviewerJ.setBounds(20, 480, 110, 20);
+        panel.add(lblInterviewerJ);
+
+        txtFInterviewerJ = new JTextField();
+        txtFInterviewerJ.setBounds(140, 480, 300, 20);
+        panel.add(txtFInterviewerJ);
+
+        lblWorkingHourJ = new JLabel("Working Hours:");
+        lblWorkingHourJ.setBounds(20, 510, 110, 20);
+        panel.add(lblWorkingHourJ);
+
+        txtFWorkingHourJ = new JTextField();
+        txtFWorkingHourJ.setBounds(140, 510, 80, 20);
+        panel.add(txtFWorkingHourJ);
+        
+        lblAppointedByJ = new JLabel("Appointed By:");
+        lblAppointedByJ.setBounds(20, 540, 130, 20);
+        panel.add(lblAppointedByJ);
+
+        txtFAppointedByJ = new JTextField();
+        txtFAppointedByJ.setBounds(140, 540, 300, 20);
+        panel.add(txtFAppointedByJ);
+        
+        lblTerminateJf = new JLabel("Termination Date:");
+        lblTerminateJf.setBounds(20, 570, 130, 20);
+        panel.add(lblTerminateJf);
+
+        txtFTerminateJf = new JTextField();
+        txtFTerminateJf.setBounds(140, 570, 80, 20);
+        panel.add(txtFTerminateJf);
+
+        lblSalaryJ = new JLabel("Salary:");
+        lblSalaryJ.setBounds(250, 510, 110, 20);
+        panel.add(lblSalaryJ);
+
+        txtFSalaryJ = new JTextField();
+        txtFSalaryJ.setBounds(360, 510, 80, 20);
+        panel.add(txtFSalaryJ);
+        
+        
+        btnAddJ = new JButton("Add");
+        btnAddJ.setBounds(360, 600, 80, 20);
+        btnAddJ.addActionListener(this);
+        panel.add(btnAddJ);
+
+        lblDeveloperJ = new JLabel("Developer's Name:");
+        lblDeveloperJ.setBounds(20, 640, 110, 20);
+        panel.add(lblDeveloperJ);
+
+        txtFDeveloperJ = new JTextField();
+        txtFDeveloperJ.setBounds(140, 640, 300, 20);
+        panel.add(txtFDeveloperJ);
+
+      
+
+        lblAdvanceJ = new JLabel("Advance Salary:");
+        lblAdvanceJ.setBounds(250, 680, 110, 20);
+        panel.add(lblAdvanceJ);
+
+        txtFAdvanceJ = new JTextField();
+        txtFAdvanceJ.setBounds(360, 680, 80, 20);
+        panel.add(txtFAdvanceJ);
+
+        
+
+        lblAppointJ = new JLabel("Appointment Date:");
+        lblAppointJ.setBounds(20, 680, 130, 20);
+        panel.add(lblAppointJ);
+
+        txtFAppointJ = new JTextField();
+        txtFAppointJ.setBounds(140, 680, 80, 20);
+        panel.add(txtFAppointJ);
+
+        
+
+        lblSpecialJ = new JLabel("Specialization:");
+        lblSpecialJ.setBounds(20, 710, 130, 20);
+        panel.add(lblSpecialJ);
+
+        txtFSpecialJ = new JTextField();
+        txtFSpecialJ.setBounds(140, 710, 80, 20);
+        panel.add(txtFSpecialJ);
+
+        lblTerminateJl = new JLabel("Termination Date:");
+        lblTerminateJl.setBounds(20, 740, 130, 20);
+        panel.add(lblTerminateJl);
+        
+       
+        txtFTerminateJl = new JTextField();
+        txtFTerminateJl.setBounds(140, 740, 80, 20);
+        panel.add(txtFTerminateJl);
+
+
+        lblPlatformNoJ = new JLabel("Platform No:");
+        lblPlatformNoJ.setBounds(20, 770, 130, 20);
+        panel.add(lblPlatformNoJ);
+
+        txtFPlatformNoJ = new JTextField();
+        txtFPlatformNoJ.setBounds(140, 770, 80, 20);
+        panel.add(txtFPlatformNoJ);
+
+        btnAppointJ = new JButton("Appoint");
+        btnAppointJ.setBounds(300, 780, 80, 20);
+        btnAppointJ.addActionListener(this);
+        panel.add(btnAppointJ);
+        // Display and Clear
+        btnClearAll = new JButton("Clear All");
+        btnClearAll.setBounds(190, 820, 100, 20);
+        btnClearAll.addActionListener(this);
+        panel.add(btnClearAll);
+
+        btnDisplayAll = new JButton("Display All");
+        btnDisplayAll.setBounds(300, 820, 100, 20);
+        btnDisplayAll.addActionListener(this);
+        panel.add(btnDisplayAll);
+
+      
+       
+
+        // Panel Properties
+        panel.setBounds(0, 0, 480, 850);
+        panel.setBorder(new LineBorder(Color.YELLOW, 7, true));
+        panel.setLayout(null);
+        frame.add(panel);
+
+        // Frame Properties
+        frame.setLayout(null);
+        frame.setSize(490,880);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    // To Check String checkString method is construct
+    public boolean checkString(String string) {
+        if(string.matches("[a-zA-Z]+(\\s+[a-zA-Z]+)*")){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // To Check ArrayList Size checkArray method is construct
+    public boolean checkArray(int num) {
+        if(num >= 0 && num < developerList.size()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // To Check ArrayList Objects type checkType method is construct.
+    public boolean checkType(int index, String type) {
+        if(type.equals("S")){
+            if(developerList.get(index) instanceof SeniorDeveloper) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if(developerList.get(index) instanceof JuniorDeveloper) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+
+    // To Add Platform for SeniorDeveloper
+    public void addForSenior() {
+        try {
+            String platform = txtFPlateformS.getText().trim();
+            String interviewer = txtFInterviewerS.getText().trim();
+            int workingHour = Integer.parseInt(txtFWorkingHourS.getText().trim());
+            int salary = Integer.parseInt(txtFSalaryS.getText().trim());
+            int contractPeriod = Integer.parseInt(txtFContractS.getText().trim());
+
+            if(platform.equals("")) {
+                JOptionPane.showMessageDialog(frame, "Platform should be included .", "Error", 2);
+            }else if(interviewer.equals("") || checkString(interviewer) == false) {
+                JOptionPane.showMessageDialog(frame, "Enter valid interviewer's name.", "Error", 2);
+            } else if(workingHour <=0) {
+                JOptionPane.showMessageDialog(frame, "Working hour should not be less than 0.", "Error", 2);
+            }  else if(salary <=0) {
+                JOptionPane.showMessageDialog(frame, "Salary should not be less than 0.", "Error", 2);
+            } else if(contractPeriod <=0) {
+                JOptionPane.showMessageDialog(frame, "Contract period should not be less than 0.", "Error", 2);
+            } else {
+                SeniorDeveloper seniorDeveloper = new SeniorDeveloper(platform, interviewer, workingHour, salary, contractPeriod);
+                developerList.add(seniorDeveloper);
+                JOptionPane.showMessageDialog(frame, "Successfully added interviewer name, platform, workingHour, salary & contractPeriod.", "Success", 1);
+            }
+        } catch(NumberFormatException exc) {
+            JOptionPane.showMessageDialog(frame, "Number should be enter in salary,contract peroid and working hour place.", "Error", 2);
+        }
+    }
+
+    //  To Appoint Developer for SeniorDeveloper
+    public void appointForSenior() {
+        try{
+            int plateNo = Integer.parseInt(txtFPlatformNoS.getText());
+            String developerName = txtFDeveloperS.getText();
+            String joinDate = txtFJoinS.getText();
+            float advanceSalary = Float.parseFloat(txtFAdvanceS.getText());
+            String roomNo = txtFRoomS.getText();
+
+            try{
+                if(checkArray(plateNo)) {
+                    if(checkType(plateNo, "S")) {
+                    SeniorDeveloper seniorDeveloper = (SeniorDeveloper) developerList.get(plateNo);
+                    if(developerName.equals("") || checkString(developerName) == false) {
+                        JOptionPane.showMessageDialog(frame, "Enter developer name.", "Error", 2);
+                    } else if(joinDate.equals("")) {
+                        JOptionPane.showMessageDialog(frame, "Enter joining date.", "Error", 2);
+                    } else if(advanceSalary <= 0.0f) {
+                        JOptionPane.showMessageDialog(frame, "Advance salary should not be less than 0.", "Error", 2);
+                    } else if(roomNo.equals("")) {
+                        JOptionPane.showMessageDialog(frame, "Enter staff room number.", "Error", 2);
+                    } else {
+                        seniorDeveloper.hireDeveloper(developerName, joinDate, advanceSalary, roomNo);
+                        JOptionPane.showMessageDialog(frame, developerName + " has been appointed.", "Success", 1);
+                    }
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "This number is of Junior Developer.", "Error", 2);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(frame, " Enter valid senior developer number.", "Error", 2);
+                }
+            } catch(IndexOutOfBoundsException exc) {
+                JOptionPane.showMessageDialog(frame, "Please enter valid developer number.", "Error", 2);
+            }
+        } catch(NumberFormatException exc) {
+            JOptionPane.showMessageDialog(frame, "Please enter number in developer number and advance salary.", "Error in", 2);
+        }
+    }
+
+    //To Terminate Platform for SeniorDeveloper
+    public void terminateForSenior() {
+        try{
+            int plateNo = Integer.parseInt(txtFPlatformNoS.getText());
+
+            try{
+                if(checkArray(plateNo)) {
+                    if(checkType(plateNo, "S")) {
+                    SeniorDeveloper seniorDeveloper = (SeniorDeveloper) developerList.get(plateNo);
+                    seniorDeveloper.terminateDev();
+                    JOptionPane.showMessageDialog(frame, "Developer has been terminated.", "Success ", 1);                
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Entera valid senior developer number.", "Error", 2);
+                }
+                } else {
+                        JOptionPane.showMessageDialog(frame, "This number is of Junior Developer.", "Error", 2);
+                    }
+                } catch(IndexOutOfBoundsException exp) {
+                JOptionPane.showMessageDialog(frame, "Please enter valid developer number.", "Error", 2);
+            }
+        } catch(NumberFormatException exp) {
+            JOptionPane.showMessageDialog(frame, "Please enter valid developer number.", "Error", 2);
+        }
+    }
+
+    // To Add Platform for JuniorDeveloper
+    public void addForJunior() {
+        try {
+            String platform = txtFPlateformJ.getText().trim();
+            String interviewer = txtFInterviewerJ.getText().trim();
+            int workingHour = Integer.parseInt(txtFWorkingHourJ.getText().trim());
+            int salary = Integer.parseInt(txtFSalaryJ.getText().trim());
+            String appointedBy = txtFAppointedByJ.getText().trim();
+            String terminationDate = txtFTerminateJf.getText().trim();
+
+
+            if(platform.equals("")){
+                JOptionPane.showMessageDialog(frame, "Enter platform name.", "Error", 2);
+            } else if(interviewer.equals("")|| checkString(interviewer) == false) {
+                JOptionPane.showMessageDialog(frame, "Enter interviewer's name.", "Error", 2);
+            } else if(workingHour <=0) {
+                JOptionPane.showMessageDialog(frame, "Working hour must be greater than 0.", "Error", 2);
+             } else if(salary <=0) {
+                JOptionPane.showMessageDialog(frame, "Working hour must be greater than 0.", "Error", 2);
+            } else if(appointedBy.equals("")) {
+                JOptionPane.showMessageDialog(frame, "Enter appointer's name.", "Error", 2);
+            } else if(terminationDate.equals("")) {
+                JOptionPane.showMessageDialog(frame, "Enter termination date.", "Error", 2);
+            
+            } else {
+          
+                JuniorDeveloper juniorDeveloper = new JuniorDeveloper(platform, interviewer, workingHour,salary, appointedBy, terminationDate);
+                developerList.add(juniorDeveloper);
+                JOptionPane.showMessageDialog(frame, "Successfully added interviewer name,platform,workingHour,salary, appointedBy, terminationDate.", "Success in JuniorDeveloper", 1);
+            }
+        } catch(NumberFormatException exc) {
+            JOptionPane.showMessageDialog(frame, "Number should be enter in working hour and salary.", "Error in JuniorDeveloper", 2);
+        }
+    }
+
+    // To Appoint Developer for JuniorDeveloper
+    public void appointForJunior() {
+        try{
+            int plateNo = Integer.parseInt(txtFPlatformNoJ.getText());
+            String developerName = txtFDeveloperJ.getText();
+            String appointDate = txtFAppointJ.getText();
+            String terminateDate = txtFTerminateJl.getText();
+            String specialization = txtFSpecialJ.getText();
+
+           try{
+             if(checkArray(plateNo)) {
+                if(checkType(plateNo, "J")){
+                    JuniorDeveloper juniorDeveloper = (JuniorDeveloper) developerList.get(plateNo);
+                    if(developerName.equals("")|| checkString(developerName) == false) {
+                        JOptionPane.showMessageDialog(frame, "Enter developer name.", "Error ", 2);
+                    } else if(appointDate.equals("")) {
+                        JOptionPane.showMessageDialog(frame, "Enter appointed date.", "Error", 2);
+                    } else if(terminateDate.equals("")){
+                        JOptionPane.showMessageDialog(frame, "Enter termination date.", "Error ", 2);
+                    } else if(specialization.equals("")){
+                        JOptionPane.showMessageDialog(frame, "Enter specialization.", "Error", 2);
+                    
+                    } else {
+                        juniorDeveloper.appointDev(developerName, appointDate, terminateDate, specialization);
+                        JOptionPane.showMessageDialog(frame, developerName + " has been appointed.", "Success", 1);
+                    }
+                    } else {
+                    JOptionPane.showMessageDialog(frame, "This number is of seniorDeveloper number.", "Error", 2);
+                  }
+                } else {
+                  JOptionPane.showMessageDialog(frame, "Enter a valid junior developer number.", "Error", 2);
+                }
+            } catch(IndexOutOfBoundsException exc) {
+                JOptionPane.showMessageDialog(frame, "Please enter valid developer number.", "Error", 2);
+            }
+        } catch(NumberFormatException exc) {
+            JOptionPane.showMessageDialog(frame, "Please enter number in developer number and advance salary.", "Error", 2);
+        }
+    }
+
+    // To Display All Developers
+    public void displayAll() {
+        if(developerList.size() > 0) {
+            for(Developer d : developerList) {
+                if(d instanceof SeniorDeveloper) {
+                    SeniorDeveloper se = (SeniorDeveloper) d;
+                    System.out.println("Senior Developer");
+                    System.out.println();
+                    se.display();
+                    System.out.println();
+                } else if(d instanceof JuniorDeveloper) {
+                    JuniorDeveloper ju = (JuniorDeveloper) d;
+                    System.out.println("Junior Developer");
+                    System.out.println();
+                    ju.display();
+                    System.out.println();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(frame, "Nothing to dispaly", "Error", 2);
+        }   
+    }
+
+    //To Clear All TextFields
+    public void clearAll() {
+        //for seniordeveloper
+        txtFPlateformS.setText("");
+        txtFInterviewerS.setText("");
+        txtFWorkingHourS.setText("");
+        txtFSalaryS.setText("");
+        txtFDeveloperS.setText("");
+        txtFJoinS.setText("");
+        txtFAdvanceS.setText("");
+        txtFRoomS.setText("");
+        txtFContractS.setText("");
+        txtFPlatformNoS.setText("");
+       
+        //for Junior developer
+        txtFPlateformJ.setText("");
+        txtFInterviewerJ.setText("");
+        txtFWorkingHourJ.setText("");
+        txtFSalaryJ.setText("");
+        txtFDeveloperJ.setText("");
+        txtFAppointJ.setText("");
+        txtFTerminateJf.setText("");
+        txtFTerminateJl.setText("");
+        txtFSpecialJ.setText("");
+        txtFAppointedByJ.setText("");
+        txtFAdvanceJ.setText("");
+        txtFPlatformNoJ.setText("");
+    }
+
+    // Event Handling
+    public void actionPerformed(ActionEvent e){     
+        if(e.getSource() == btnAddS) {
+            addForSenior();
+        }   
+        if(e.getSource() == btnAppointS) {
+            appointForSenior();
+        }  
+        if(e.getSource() == btnTerminateS) {
+            terminateForSenior();
+        }  
+        if(e.getSource() == btnAddJ) {
+            addForJunior();
+        }  
+        if(e.getSource() == btnAppointJ) {
+            appointForJunior();
+        }  
+        if(e.getSource() == btnDisplayAll) {
+            displayAll();
+        }  
+        if(e.getSource() == btnClearAll) {
+            clearAll();
+        }  
+    }  
+
+}
