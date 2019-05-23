@@ -1,0 +1,48 @@
+/**
+ * The class developer is a main class and has four attributes i.e
+ * platform,interviewer name ,working hours and developer name.
+ */
+public class Developer{
+    String platform;
+    String interviewerName;
+    int workingHours;
+    String developerName;
+    //this is a constructure for class developer
+   public Developer(String platform,String interviewerName, int totalHours){
+        this.platform=platform; // "this" is used to get class variable in constructor  
+        this.interviewerName=interviewerName;
+        this.workingHours=totalHours;
+        this.developerName="";//making developer name empty
+   }
+   // it is a getter method for platform
+        public String getPlatform(){
+              return(platform);
+        }
+   // it is a getter method for interviewer name     
+        public String getInterviewerName(){
+              return(interviewerName);
+        }
+ //it is a getter method for working hours       
+        public int getWorkingHours(){
+              return(workingHours);
+        }
+// it is a setter method for developer name        
+        public void setDeveloperName(String developerName){
+              this.developerName=developerName;    
+        }
+        /**
+         * it is a method to display platform, interviewer name,working hours
+         * and developer name
+         */
+   public void display(){
+       System.out.println("The platform :"+this.platform);
+       System.out.println("Interviewer's Name :"+ this.interviewerName);
+       System.out.println("Total working Hours :"+this.workingHours);
+       if(!developerName.equals("")){
+             System.out.println("Developer's Name :"+developerName);
+       }
+       
+   }
+}
+
+   
